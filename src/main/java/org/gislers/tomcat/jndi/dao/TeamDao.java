@@ -6,12 +6,10 @@ import java.util.List;
 
 public interface TeamDao {
 
-    int createTeam( TeamVo teamVo );
-    void updateTeam( TeamVo teamVo );
-    void deleteTeam( int teamId );
-
-    List<TeamVo> getAllTeams();
-    TeamVo getTeamByTeamId( int teamId );
-    TeamVo getTeamByPlayerId( int playerId );
-    TeamVo getTeamByTeamName( String teamName );
+    void save( TeamVo teamVo );
+    void deleteByTeamId( int teamId );
+    List<TeamVo> getAll();
+    TeamVo findByTeamId( int teamId );
+    TeamVo findByPlayerId( int playerId );
+    TeamVo findByTeamName( String teamName );
 }

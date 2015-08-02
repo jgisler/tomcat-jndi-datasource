@@ -32,58 +32,5 @@ public class SportService {
         this.playerDao = playerDao;
     }
 
-    public List<Team> getAllTeams() {
-        List<Team> teams = null;
-        List<TeamVo> teamVos = teamDao.getAllTeams();
-        if( teamVos != null ) {
-            teams = new ArrayList<Team>(teamVos.size());
-            for( TeamVo teamVo : teamVos ) {
-                List<PlayerVo> playerVos = playerDao.findPlayersByTeamId(teamVo.getTeamId());
-                teams.add( buildTeam(teamVo, playerVos) );
-            }
-        }
-        return teams;
-    }
 
-    public Team getTeamByTeamId( int teamId ) {
-        TeamVo teamVo = teamDao.getTeamByTeamId(teamId);
-        if( teamVo != null ) {
-            List<PlayerVo> players = playerDao.findPlayersByTeamId(teamId);
-            return buildTeam( teamVo, players );
-        }
-        return null;
-    }
-
-    public List<Player> getPlayersByTeamId( int teamId ) {
-        List<Player> players = new ArrayList<Player>();
-        players.addAll( buildPlayerList(playerDao.findPlayersByTeamId(teamId)) );
-        return players;
-    }
-
-    Team buildTeam( TeamVo teamVo, List<PlayerVo> playerVos ) {
-        Team team = new Team();
-        team.setTeamId(teamVo.getTeamId());
-        team.setTeamName(teamVo.getTeamName());
-        team.getRoster().addAll( buildPlayerList(playerVos) );
-        return team;
-    }
-
-    List<Player> buildPlayerList( List<PlayerVo> playerVos ) {
-        List<Player> playerList = new ArrayList<Player>();
-        if(playerVos != null) {
-            for( PlayerVo playerVo : playerVos ) {
-                playerList.add(buildPlayer(playerVo));
-            }
-        }
-        return playerList;
-    }
-
-    Player buildPlayer( PlayerVo playerVo ) {
-        Player player = new Player();
-        player.setPlayerId(playerVo.getPlayerId());
-        player.setPlayerName(playerVo.getPlayerName());
-        player.setPlayerNumber(playerVo.getPlayerNumber());
-        player.setTeamId( playerVo.getTeamId() );
-        return player;
-    }
 }

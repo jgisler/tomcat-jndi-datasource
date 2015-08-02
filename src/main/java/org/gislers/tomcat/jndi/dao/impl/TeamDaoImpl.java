@@ -7,33 +7,30 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class TeamDaoImpl implements TeamDao {
+public class TeamDaoImpl extends BaseDaoImpl implements TeamDao {
 
-    public int createTeam(TeamVo teamVo) {
-        return 0;
+    public void save(TeamVo teamVo) {
+        persist(teamVo);
     }
 
-    public void updateTeam(TeamVo teamVo) {
-
-    }
-
-    public void deleteTeam(int teamId) {
+    @Override
+    public void deleteByTeamId(int teamId) {
 
     }
 
-    public List<TeamVo> getAllTeams() {
+    public List<TeamVo> getAll() {
         return null;
     }
 
-    public TeamVo getTeamByTeamId(int teamId) {
+    public TeamVo findByTeamId(int teamId) {
         return null;
     }
 
-    public TeamVo getTeamByPlayerId(int playerId) {
+    public TeamVo findByPlayerId(int playerId) {
         return null;
     }
 
-    public TeamVo getTeamByTeamName(String teamName) {
+    public TeamVo findByTeamName(String teamName) {
         return null;
     }
 }

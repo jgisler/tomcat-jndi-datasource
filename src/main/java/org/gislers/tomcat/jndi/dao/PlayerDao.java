@@ -6,12 +6,9 @@ import java.util.List;
 
 public interface PlayerDao {
 
-    // CRUD
-    int createPlayer( PlayerVo playerVo );
-    void updatePlayer( PlayerVo playerVo );
-    void deletePlayer( int playerId );
-
-    PlayerVo findPlayerByPlayerId( int playerId );
-    List<PlayerVo> findPlayersByTeamId( int teamId );
-    PlayerVo findPlayerByPlayerName( String playerName );
+    void save( PlayerVo playerVo );
+    void deleteByPlayerId( int playerId );
+    PlayerVo findByPlayerId( int playerId );
+    List<PlayerVo> findByTeamId( int teamId );
+    PlayerVo findByPlayerName( String playerName );
 }

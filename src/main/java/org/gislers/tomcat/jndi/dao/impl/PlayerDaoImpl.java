@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
-public class PlayerDaoImpl implements PlayerDao {
+public class PlayerDaoImpl extends BaseDaoImpl implements PlayerDao {
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -21,26 +21,34 @@ public class PlayerDaoImpl implements PlayerDao {
 
 
     public int createPlayer(PlayerVo playerVo) {
+        String sql = "insert into player('player_id', 'player2team_id', 'player_name', 'player_number'  ) " +
+                "values( null, :player2teamId, :playerName, :playerNumber )";
+
         return 0;
     }
 
-    public void updatePlayer(PlayerVo playerVo) {
+    @Override
+    public void save(PlayerVo playerVo) {
+        persist(playerVo);
+    }
+
+    @Override
+    public void deleteByPlayerId(int playerId) {
 
     }
 
-    public void deletePlayer(int playerId) {
-
-    }
-
-    public PlayerVo findPlayerByPlayerId(int playerId) {
+    @Override
+    public PlayerVo findByPlayerId(int playerId) {
         return null;
     }
 
-    public List<PlayerVo> findPlayersByTeamId(int teamId) {
+    @Override
+    public List<PlayerVo> findByTeamId(int teamId) {
         return null;
     }
 
-    public PlayerVo findPlayerByPlayerName(String playerName) {
+    @Override
+    public PlayerVo findByPlayerName(String playerName) {
         return null;
     }
 }
